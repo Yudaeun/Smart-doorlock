@@ -19,12 +19,14 @@ def get_dht():
 	global humidity
 
 	while True:
-		
-		temperature = dht11.temperature
-		humidity = dht11.humidity
-		#print(f"Humidity= {humidity:.2f}")
-		#print(f"Temperature= {temperature:.2f}°C")
-		#time.sleep(0.5)
+		try:
+			temperature = dht11.temperature
+			humidity = dht11.humidity
+			print(f"Humidity= {humidity:.2f}")
+			print(f"Temperature= {temperature:.2f}°C")
+		except RuntimeError:
+            			print('Failed')
+		time.sleep(0.5)
 
 
 dht_thread=threading.Thread(target=get_dht)
